@@ -4,5 +4,4 @@ output "ip_addresses" {
       "web-2-ip": aws_instance.web-2.public_ip
       }
     
- # name = "ip addresses"
 }
