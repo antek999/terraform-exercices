@@ -6,7 +6,6 @@ output "ip_addresses" {
     "app-2-ip" : aws_instance.app-2.private_ip,
     "db-1-endpoint" : aws_db_instance.main-db.endpoint
   }
-
 }
 
 output "nat-gw-ip-addresses" {
