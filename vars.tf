@@ -19,7 +19,7 @@ variable "instance_type" {
 }
 
 variable "db-instance-class" {
-  default = "db.t3.micro"
+  default     = "db.t3.micro"
   description = "our default db instance class"
 }
 

@@ -5,7 +5,7 @@ resource "aws_instance" "app-1" {
   availability_zone      = "eu-west-2a"
   subnet_id              = aws_subnet.app-1.id
   vpc_security_group_ids = [aws_security_group.sg-ssh-private.id]
-  key_name = "internal"
+  key_name               = "internal"
   tags = {
     Name = "app-1"
   }
@@ -19,10 +19,10 @@ resource "aws_security_group" "sg-ssh-private" {
 
   ingress {
     description = "ssh"
-    from_port    = 22
+    from_port   = 22
     to_port     = 22
-    protocol     = "tcp"
-    cidr_blocks = [aws_vpc.main.cidr_block ]
+    protocol    = "tcp"
+    cidr_blocks = [aws_vpc.main.cidr_block]
   }
 
   egress {

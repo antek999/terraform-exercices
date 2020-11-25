@@ -87,26 +87,23 @@ resource "aws_internet_gateway" "main" {
   }
 }
 
-# Route tables
-resource "aws_route_table" "internet-access" {
-  vpc_id = aws_vpc.main.id
+# Elastic IP
 
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.main.id
+resource "aws_eip" "nat-eip-with-count" {
+  vpc   = true
+  count = 2
+  tags = {
+    "Name" = "basic-${count.index}"
   }
+}
+
+# Nat Gateway
+resource "aws_nat_gateway" "nat-gw" {
+  count         = 2
+  allocation_id = aws_eip.nat-eip-with-count["${count.index}"].id
+  subnet_id     = aws_subnet.web-1.id
 
   tags = {
-    Name = "internet-access"
+    "Name" = "Nat-Gateway-${count.index}"
   }
-}
-
-resource "aws_route_table_association" "web-1" {
-  subnet_id      = aws_subnet.web-1.id
-  route_table_id = aws_route_table.internet-access.id
-}
-
-resource "aws_route_table_association" "web-2" {
-  subnet_id      = aws_subnet.web-2.id
-  route_table_id = aws_route_table.internet-access.id
 }
