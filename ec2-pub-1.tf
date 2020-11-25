@@ -5,7 +5,7 @@ resource "aws_instance" "web-1" {
   availability_zone      = "eu-west-2a"
   subnet_id              = aws_subnet.web-1.id
   vpc_security_group_ids = [aws_security_group.sg-ssh-pub.id]
-  key_name = "ssh"
+  key_name               = "ssh"
   tags = {
     Name = "web-1"
   }
@@ -27,9 +27,9 @@ resource "aws_security_group" "sg-ssh-pub" {
 
   ingress {
     description = "ssh"
-    from_port    = 22
+    from_port   = 22
     to_port     = 22
-    protocol     = "tcp"
+    protocol    = "tcp"
     cidr_blocks = concat([aws_vpc.main.cidr_block], var.home_ips)
   }
 
