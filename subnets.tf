@@ -10,7 +10,7 @@ resource "aws_subnet" "app" {
 }
 
 resource "aws_subnet" "web" {
-  count = 2
+  count                   = 2
   vpc_id                  = aws_vpc.main.id
   cidr_block              = var.vpc_subnet_blocks["web-${count.index + 1}"]
   map_public_ip_on_launch = true
@@ -23,7 +23,7 @@ resource "aws_subnet" "web" {
 }
 
 resource "aws_subnet" "db" {
-  count = 2
+  count             = 2
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.vpc_subnet_blocks["db-${count.index + 1}"]
   availability_zone = var.azs[count.index % length(var.azs)]

@@ -9,8 +9,8 @@ variable "vpc_subnet_blocks" {
 }
 
 variable "azs" {
-  type        = list 
-  default         = ["eu-west-2a", "eu-west-2b"]
+  type        = list
+  default     = ["eu-west-2a", "eu-west-2b"]
   description = "list of availability zones"
 }
 
