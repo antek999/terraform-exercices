@@ -1,7 +1,7 @@
 name: terraform format
-on: [push]
+on: [push, pull_request]
 jobs:
-  check-bats-version:
+  Terraform Format:
     runs-on: ubuntu-latest
     steps:
       - run: terraform fmt -check
