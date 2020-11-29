@@ -4,4 +4,4 @@ jobs:
   terraform_format:
     runs-on: ubuntu-latest
     steps:
-      - run: terraform fmt -check
+      - run: exit 1
