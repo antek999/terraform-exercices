@@ -12,7 +12,7 @@ resource "aws_security_group" "sg-ssh-pub" {
   }
 
   ingress {
-    description = "ssh"
+    description =                                     "ssh"
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
