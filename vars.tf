@@ -8,6 +8,12 @@ variable "vpc_subnet_blocks" {
   description = "CIRD blocks for subnets in vpc"
 }
 
+variable "azs" {
+  type        = list
+  default     = ["eu-west-2a", "eu-west-2b"]
+  description = "list of availability zones"
+}
+
 variable "ami" {
   default     = "ami-f976839e"
   description = "default ami for our instances"

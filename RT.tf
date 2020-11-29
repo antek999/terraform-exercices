@@ -25,33 +25,20 @@ resource "aws_route_table" "private-rt" {
   }
 }
 
-resource "aws_route_table_association" "web-1" {
-  subnet_id      = aws_subnet.web-1.id
+resource "aws_route_table_association" "web" {
+  count          = 2
+  subnet_id      = aws_subnet.web[count.index].id
   route_table_id = aws_route_table.public-rt.id
 }
 
-resource "aws_route_table_association" "web-2" {
-  subnet_id      = aws_subnet.web-2.id
-  route_table_id = aws_route_table.public-rt.id
+resource "aws_route_table_association" "app" {
+  count          = 2
+  subnet_id      = aws_subnet.app[count.index].id
+  route_table_id = aws_route_table.private-rt[count.index].id
 }
 
-
-resource "aws_route_table_association" "app-1" {
-  subnet_id      = aws_subnet.app-1.id
-  route_table_id = aws_route_table.private-rt[0].id
-}
-
-resource "aws_route_table_association" "app-2" {
-  subnet_id      = aws_subnet.app-2.id
-  route_table_id = aws_route_table.private-rt[1].id
-}
-
-resource "aws_route_table_association" "db-1" {
-  subnet_id      = aws_subnet.db-1.id
-  route_table_id = aws_route_table.private-rt[0].id
-}
-
-resource "aws_route_table_association" "db-2" {
-  subnet_id      = aws_subnet.db-2.id
-  route_table_id = aws_route_table.private-rt[1].id
+resource "aws_route_table_association" "db" {
+  count          = 2
+  subnet_id      = aws_subnet.db[count.index].id
+  route_table_id = aws_route_table.private-rt[count.index].id
 }

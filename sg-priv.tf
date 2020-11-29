@@ -1,17 +1,3 @@
-
-resource "aws_instance" "app-1" {
-  ami                    = var.ami
-  instance_type          = var.instance_type
-  availability_zone      = "eu-west-2a"
-  subnet_id              = aws_subnet.app-1.id
-  vpc_security_group_ids = [aws_security_group.sg-ssh-private.id]
-  key_name               = "internal"
-  tags = {
-    Name = "app-1"
-  }
-}
-
-
 resource "aws_security_group" "sg-ssh-private" {
   name        = "allow_ssh-from-private"
   description = "Allow ssh inbound traffic"
