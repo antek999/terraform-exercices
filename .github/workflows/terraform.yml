@@ -4,4 +4,7 @@ jobs:
   terraform_format:
     runs-on: ubuntu-latest
     steps:
-      - run: ls -la /github/workspace/
+      - name: 'checkout'
+        uses: actions/checkout@master
+      - name: 'terraform fmt'
+        run: ls -la /github/workspace/
