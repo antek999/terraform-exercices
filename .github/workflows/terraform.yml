@@ -1,0 +1,7 @@
+name: terraform format
+on: [push]
+jobs:
+  check-bats-version:
+    runs-on: ubuntu-latest
+    steps:
+      - run: terraform fmt -check
