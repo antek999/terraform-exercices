@@ -4,4 +4,4 @@ jobs:
   terraform_format:
     runs-on: ubuntu-latest
     steps:
-      - run: ls; cat rds.tf; terraform fmt -check; echo $?
+      - run: ls -la 
