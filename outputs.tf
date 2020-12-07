@@ -1,9 +1,9 @@
 output "ip_addresses_pub" {
-  value = "${join(",", aws_instance.ec2-web.*.public_ip)}"
+  value = join(",", aws_instance.ec2-web.*.public_ip)
 }
 
 output "ip_addresses_priv" {
-  value = "${join(",", aws_instance.ec2-app.*.private_ip)}"
+  value = join(",", aws_instance.ec2-app.*.private_ip)
 }
 
 output "nat-gw-ip-addresses" {

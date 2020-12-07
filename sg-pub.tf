@@ -19,6 +19,14 @@ resource "aws_security_group" "sg-ssh-pub" {
     cidr_blocks = concat([aws_vpc.main.cidr_block], var.home_ips)
   }
 
+  ingress {
+    description = "ssh"
+    from_port   = 80
+    to_port     = 80
+    protocol    = "tcp"
+    cidr_blocks = concat([aws_vpc.main.cidr_block], var.home_ips)
+  }
+
   egress {
     from_port   = 0
     to_port     = 0
