@@ -12,6 +12,6 @@ output "nat-gw-ip-addresses" {
 
 output "db_endpoint" {
   value = {
-    "db-1-endpoint" : aws_db_instance.main-db.endpoint
+    "db-1-endpoint" : aws_db_instance.main-db.*.endpoint
   }
 }

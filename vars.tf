@@ -40,3 +40,13 @@ variable "user" {
 variable "pass" {
   default = []
 }
+
+variable "create_database" {
+  default     = false
+  description = "create database if set to true"
+}
+
+variable "create_nat_gw" {
+  default     = false
+  description = "create nat gateway if set to true"
+}
