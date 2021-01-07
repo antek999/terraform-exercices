@@ -29,7 +29,7 @@ resource "aws_eip" "nat-eip-with-count" {
 
 # Nat Gateway
 resource "aws_nat_gateway" "nat-gw" {
-  count         = 2
+  count         = var.create_nat_gw == true ? 2 : 0
   allocation_id = aws_eip.nat-eip-with-count["${count.index}"].id
   subnet_id     = aws_subnet.web[count.index].id
 

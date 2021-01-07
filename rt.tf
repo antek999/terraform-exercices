@@ -13,13 +13,11 @@ resource "aws_route_table" "public-rt" {
 
 resource "aws_route_table" "private-rt" {
   vpc_id = aws_vpc.main.id
-  count  = 2
-
+  count  = var.create_nat_gw == true ? 2 : 0
   route {
     cidr_block = "0.0.0.0/0"
     gateway_id = aws_nat_gateway.nat-gw[count.index].id
   }
-
   tags = {
     Name = "private-rt-${count.index}"
   }
@@ -32,13 +30,13 @@ resource "aws_route_table_association" "web" {
 }
 
 resource "aws_route_table_association" "app" {
-  count          = 2
+  count          = var.create_nat_gw == true ? 2 : 0
   subnet_id      = aws_subnet.app[count.index].id
   route_table_id = aws_route_table.private-rt[count.index].id
 }
 
 resource "aws_route_table_association" "db" {
-  count          = 2
+  count          = var.create_nat_gw == true ? 2 : 0
   subnet_id      = aws_subnet.db[count.index].id
   route_table_id = aws_route_table.private-rt[count.index].id
 }
